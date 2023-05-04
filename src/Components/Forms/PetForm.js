@@ -33,7 +33,7 @@ const PetForm = ({ handleSubmit, loading, petData, error, btnText }) => {
           pet.images.map((image, index) => (
             <div key={index} className={styles.formPreview}>
               <img
-                src={`http://localhost:5000/images/pets/${image}`}
+                src={`https://api-adocao-pets.onrender.com/images/pets/${image}`}
                 alt={pet.name}
               />
             </div>

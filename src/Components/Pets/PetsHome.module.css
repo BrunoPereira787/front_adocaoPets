@@ -77,14 +77,18 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .petContainer {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 550px) {
   .petContainer {
     grid-template-columns: 1fr;
+  }
+
+  .petImage {
+    height: 20rem;
   }
 }

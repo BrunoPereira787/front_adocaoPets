@@ -2,27 +2,20 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import useFetch from "../../Hooks/UseFetch";
 import PetForm from "../Forms/PetForm";
-import { UPDATE_PET } from "../../Api";
+import { GET_PET, UPDATE_PET } from "../../Api";
 
 const PetEdit = () => {
-  const { error, loading, request } = useFetch();
+  const { error, loading, request, data } = useFetch();
   const { id } = useParams();
-  const [pet, setPet] = React.useState(null);
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    const loadApi = async () => {
+    const load = async () => {
       const token = window.localStorage.getItem("token");
-
-      const { json } = await request(`http://localhost:5000/pets/pet/${id}`, {
-        method: "GET",
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      });
-      setPet(json.pet);
+      const { url, options } = GET_PET(id, token);
+      await request(url, options);
     };
-    loadApi();
+    load();
   }, [id, request]);
 
   const handleSubmit = async (pet) => {
@@ -48,13 +41,13 @@ const PetEdit = () => {
     }
   };
 
-  if (pet)
+  if (data)
     return (
       <section className="container">
         <PetForm
           handleSubmit={handleSubmit}
           loading={loading}
-          petData={pet}
+          petData={data.pet}
           error={error}
           btnText="Editar"
         />

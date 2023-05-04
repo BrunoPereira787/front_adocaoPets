@@ -57,7 +57,7 @@
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 550px) {
   .detailImg img {
     height: 20rem;
   }

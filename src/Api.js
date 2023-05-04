@@ -18,6 +18,18 @@ export function GET_PET_DETAILS(id) {
   };
 }
 
+export function GET_PET(id, token) {
+  return {
+    url: API_URL + `/pets/pet/${id}`,
+    options: {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    },
+  };
+}
+
 export function POST_PET(token, formData) {
   return {
     url: API_URL + "/pets/create",
